@@ -1,0 +1,8 @@
+pandas
+pyquery
+requests
+streamlit
+folium
+streamlit-folium
+geopy
+matplotlib
