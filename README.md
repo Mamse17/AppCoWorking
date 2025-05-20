@@ -1,40 +1,87 @@
-Espace de Co-Working d’Île de France
-===================================
+# Espace de Co-Working d’Île de France
 
-Description
------------
-Ce script Streamlit permet de :
-1. Récupérer les données des espaces de co-working en Île-de-France via scraping du site https://www.leportagesalarial.com/coworking/
-2. Nettoyer et normaliser les textes (adresses, téléphones, etc.).
-3. Géocoder chaque adresse pour obtenir latitude et longitude.
-4. Afficher dans l’application Streamlit :
-   - Une liste des espaces (6 premières colonnes du CSV).
-   - Une carte interactive Folium centrée sur Paris, avec marqueurs pour chaque espace.
-   - Un diagramme en barres (matplotlib) montrant le nombre d’espaces accessibles par ligne de métro et RER.
+Une application Streamlit interactive pour découvrir et rechercher les espaces de coworking en Île-de-France.
 
-Fichiers générés
-----------------
-- coworking_data_pandas.csv  
-- fichier_nettoye.csv  
-- fichier_nettoye_geocoded.csv  
-- fichier2_nettoye.csv  
+---
 
-Prérequis
----------
-- Python 3.7 ou supérieur  
-- Accès internet pour le scraping et le géocodage  
+## 🚀 Fonctionnalités principales
 
-Installation
-------------
-1. Créez et activez un environnement virtuel (par exemple env_streamlit) :  
-python -m venv env_streamlit
-env_streamlit\Scripts\activate
+1. **Scraping & géocodage**  
+   - Récupération automatique des informations (nom, adresse, téléphone, accès, liens) depuis la page LePortageSalarial  
+   - Nettoyage du texte et des numéros de téléphone  
+   - Géocodage des adresses (latitude / longitude) via l’API OpenCage  
 
-2. Installez les dépendances :  
-pip install -r Requirements.txt
+2. **Recherche en direct**  
+   - Barre de recherche en haut de la page  
+   - Filtre instantané par nom, adresse, ligne de transport ou téléphone  
 
-Utilisation
------------
-Lancez l’application Streamlit :  
-streamlit run app.py
-(Remplacez app.py par le nom de votre script si besoin.)
+3. **Visualisation**  
+   - **Liste** des espaces (6 premières colonnes du CSV) dans une section extensible  
+   - **Carte interactive** Folium centrée sur Paris avec marqueurs pour chaque espace  
+   - **Diagramme en barres** matplotlib du nombre d’espaces accessibles par ligne de métro (1–14) et RER (A–H)  
+
+4. **Téléchargement du code**  
+   - Bouton pour télécharger le script Python complet  
+
+---
+
+## 📦 Prérequis
+
+- Python ≥ 3.8  
+- Clé API OpenCage (ici codée en dur : `1a641532f42e4521ab7a948d109443bb`)  
+- Connexion Internet (scraping + géocodage)
+
+---
+
+## 🔧 Installation
+
+1. **Cloner le dépôt**  
+   ```bash
+   git clone https://github.com/tonPseudo/ton-repo.git
+   cd ton-repo
+
+2. **Créer et activer l’environnement virtuel**
+   python -m venv librairie
+   # Windows
+   librairie\Scripts\activate
+   # macOS / Linux
+   source librairie/bin/activate
+
+3. **Installer les dépendances**
+   pip install -r requirements.txt
+
+4. **Ajouter (ou modifier) votre clé OpenCage**
+   Ici l'exposition de la clé API n'est pas sensible du fait qu'elle soit lié à un compte non critique et free
+
+   - Si vous préférez ne pas garder la clé en dur, exportez-la en variable d’environnement, puis dans le code remplacez : 
+      locator = OpenCage(api_key="VOTRE_CLE_ICI")
+
+   par : 
+      import os
+      locator = OpenCage(api_key=os.getenv("OPENCAGE_API_KEY"))
+
+   et exportez avant de lancer : 
+      export OPENCAGE_API_KEY="1a641532f42e4521ab7a948d109443bb"
+
+## ▶️ Lancer l’application
+
+   - streamlit run app_streamlit.py
+
+## 📁 Structure du projet
+
+   - .
+      ├── app_streamlit.py       # Script principal Streamlit
+      ├── requirements.txt       # Dépendances Python
+      ├── .gitignore             # Exclusions Git (env, caches, csv…)
+      └── README.md              # Documentation (ce fichier)
+
+
+
+
+
+<p align="center"> Made with ❤️ by Kondian Traoré </p> ```
+
+
+
+
+
