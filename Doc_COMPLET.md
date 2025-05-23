@@ -83,7 +83,7 @@ df2 : lignes avec coordonnées valides (carte)
 labels, values : données du diagramme.
 ```
 ### 3.4 Recherche temps réel
-python
+```python
 Copier
 Modifier
 query = st.text_input("🔎 Rechercher un espace de co-working")
@@ -94,14 +94,14 @@ mask = (
     df_search['téléphone'].str.contains(query, case=False, na=False)
 )
 Filtre sur quatre colonnes ; résultat affiché en markdown (nom, adresse, etc.).
-
+```
 ### .5 Sections dépliables (st.expander)
-Expander	Contenu	Code résumé
+```Expander	Contenu	Code résumé
 📋 Liste	Affiche les 6 premières colonnes du DataFrame.	st.write(df_search.iloc[:, :6])
 🗺️ Carte	Folium centrée sur Paris, marqueurs sur chaque (lat, lon).	folium.Map, boucle Marker
 📊 Diagramme	Histogramme du nombre d’espaces par ligne métro / RER.	ax.bar(labels, values)
 ⬇️ Script	Bouton pour télécharger le fichier Python courant.	st.download_button
-
+```
 ### 4. Choix techniques & bonnes pratiques
 Cache Streamlit : évite de refaire le scraping et le géocodage (longs).
 
@@ -125,7 +125,7 @@ Mettre en place une CI/CD : GitHub → Streamlit Cloud auto-deploy.
 Ajouter des filtres (département, prix, services) pour affiner la recherche.
 
 ### 6. Schéma global
-mermaid
+```mermaid
 Copier
 Modifier
 flowchart LR
@@ -137,7 +137,7 @@ flowchart LR
     E --> T[Tableau 📋]
     E --> M[Carte 🗺️]
     E --> G[Diagramme 📊]
-
+```
 
 
 
