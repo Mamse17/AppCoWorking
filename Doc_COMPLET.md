@@ -69,7 +69,7 @@ Modifier
 Extraction `latitude` / `longitude`, puis suppression de la colonne temporaire. | - OpenCage = service fiable + clé API.<br>- `RateLimiter` : respecte 1 req/s → pas de blocage. |
 | 4. **Nettoyage secondaire** | Re-application de `net_txt` & `net_tel` sur le DF géocodé. | Supprime les artefacts ajoutés lors du géocodage. |
 | 5. **Statistiques transport** | Compte, pour chaque ligne *Accès* :<br>• chiffres `1-14` → métro ;<br>• lettres isolées `A-H` → RER.<br>Met en forme `labels` & `values` pour le graphique. | Prépare la visualisation “desserte transport”. |
-
+```
 ---
 
 ### 3.3  Chargement des données
@@ -81,8 +81,8 @@ df_search : version complète (recherche + tableau)
 df2 : lignes avec coordonnées valides (carte)
 
 labels, values : données du diagramme.
-
-3.4 Recherche temps réel
+```
+### 3.4 Recherche temps réel
 python
 Copier
 Modifier
@@ -95,14 +95,14 @@ mask = (
 )
 Filtre sur quatre colonnes ; résultat affiché en markdown (nom, adresse, etc.).
 
-3.5 Sections dépliables (st.expander)
+### .5 Sections dépliables (st.expander)
 Expander	Contenu	Code résumé
 📋 Liste	Affiche les 6 premières colonnes du DataFrame.	st.write(df_search.iloc[:, :6])
 🗺️ Carte	Folium centrée sur Paris, marqueurs sur chaque (lat, lon).	folium.Map, boucle Marker
 📊 Diagramme	Histogramme du nombre d’espaces par ligne métro / RER.	ax.bar(labels, values)
 ⬇️ Script	Bouton pour télécharger le fichier Python courant.	st.download_button
 
-4. Choix techniques & bonnes pratiques
+### 4. Choix techniques & bonnes pratiques
 Cache Streamlit : évite de refaire le scraping et le géocodage (longs).
 
 RateLimiter : protège l’API OpenCage et respecte le quota.
@@ -113,7 +113,7 @@ Expander : interface épurée, chaque section se charge à la demande.
 
 Téléchargement du script : favorise la transparence et la réutilisation.
 
-5. Pistes d’amélioration
+### 5. Pistes d’amélioration
 Ajouter ttl=86400 au cache pour rafraîchir les données une fois par jour.
 
 Sauvegarder le CSV issu du scraping pour disposer d’un fallback hors-ligne.
@@ -124,7 +124,7 @@ Mettre en place une CI/CD : GitHub → Streamlit Cloud auto-deploy.
 
 Ajouter des filtres (département, prix, services) pour affiner la recherche.
 
-6. Schéma global
+### 6. Schéma global
 mermaid
 Copier
 Modifier
@@ -137,4 +137,8 @@ flowchart LR
     E --> T[Tableau 📋]
     E --> M[Carte 🗺️]
     E --> G[Diagramme 📊]
+
+
+
+
 <p align="center">Made with ❤️ by Kondian Traoré</p> ```
